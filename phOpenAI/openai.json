@@ -1,0 +1,218 @@
+{
+    "appid": "9a9467b3-c4da-4289-a07b-b2d6b54f65da",
+    "name": "OpenAI",
+    "description": "The app establishes a connection to Open AI. Here you can ask a question taking certain parameters into account. The result is provided as JSON.",
+    "type": "information",
+    "product_vendor": "OpenAI",
+    "logo": "openai.png",
+    "logo_dark": "openai_dark.png",
+    "product_name": "OpenAI",
+    "python_version": "3",
+    "product_version_regex": ".*",
+    "publisher": "Andreas Buis",
+    "license": "Copyright (c) Andreas Buis, 2023",
+    "app_version": "1.7.0",
+    "utctime_updated": "2023-11-23T07:14:40.970052Z",
+    "package_name": "phantom_openai",
+    "main_module": "openai_connector.py",
+    "min_phantom_version": "6.1.1.211",
+    "app_wizard_version": "1.0.0",
+    "configuration": {
+        "api_key": {
+            "description": "Open AI api_key",
+            "data_type": "string",
+            "required": true,
+            "value_list": [],
+            "default": "",
+            "order": 0,
+            "name": "api_key",
+            "id": 0
+        },
+        "base_url": {
+            "description": "Open AI REST URL https://api.openai.com/v1",
+            "data_type": "string",
+            "required": true,
+            "value_list": [],
+            "default": "https://api.openai.com/v1/engines/",
+            "order": 1,
+            "name": "base_url",
+            "id": 1,
+            "descriptionError": false
+        }
+    },
+    "actions": [
+        {
+            "action": "test connectivity",
+            "identifier": "test_connectivity",
+            "description": "Validate the asset configuration for connectivity using supplied configuration",
+            "verbose": "",
+            "type": "test",
+            "read_only": true,
+            "parameters": {},
+            "output": [],
+            "versions": "EQ(*)"
+        },
+        {
+            "action": "text_prompt",
+            "identifier": "prompt",
+            "description": "the text prompt allows you to ask questions to Open AI. Please note that the quality of the answer depends on your question.",
+            "verbose": "There are several models for GPT-3, e.g. davinci, curie, babbage, and ada. Each of these models has different features and costs. To use a specific model, simply change the engine part of the URL in your request. Please visit the following URL for a current overview of models: https://platform.openai.com/docs/models/overview",
+            "type": "investigate",
+            "read_only": false,
+            "parameters": {
+                "mesage": {
+                    "description": "Your question to Open AI. Please note the following recommendations: https://platform.openai.com/docs/guides/prompt-engineering",
+                    "data_type": "string",
+                    "required": true,
+                    "primary": false,
+                    "contains": [],
+                    "value_list": [],
+                    "default": "",
+                    "order": 0,
+                    "name": "mesage",
+                    "id": 1,
+                    "param_name": "mesage"
+                },
+                "model": {
+                    "description": "Here you can set model to davinci, curie, babbage or ada, depending on which model you want to use.",
+                    "data_type": "string",
+                    "required": true,
+                    "primary": false,
+                    "contains": [],
+                    "value_list": [],
+                    "default": "davinci",
+                    "order": 1,
+                    "name": "model",
+                    "id": 2,
+                    "param_name": "model"
+                },
+                "max_tokens": {
+                    "description": "set this to a value that offers sufficient space for a detailed analysis, for example 200-300 tokens.",
+                    "data_type": "numeric",
+                    "required": true,
+                    "primary": false,
+                    "contains": [],
+                    "value_list": [],
+                    "default": "100",
+                    "order": 2,
+                    "name": "max_tokens",
+                    "id": 3,
+                    "param_name": "max_tokens"
+                },
+                "temperature": {
+                    "description": "Use a low value to get precise, less creative answers. Typically: 0.1 - 0.3.",
+                    "data_type": "string",
+                    "required": true,
+                    "primary": false,
+                    "contains": [],
+                    "value_list": [],
+                    "default": "",
+                    "order": 3,
+                    "name": "temperature",
+                    "id": 4,
+                    "param_name": "temperature"
+                },
+                "top_p": {
+                    "description": "A low value, such as 0.1, ensures consistent answers.",
+                    "data_type": "string",
+                    "required": true,
+                    "primary": false,
+                    "contains": [],
+                    "value_list": [],
+                    "default": "",
+                    "order": 4,
+                    "name": "top_p",
+                    "id": 5,
+                    "param_name": "top_p"
+                },
+                "n": {
+                    "description": "Normally one answer (n=1) is sufficient, as the focus is on a specific analysis.",
+                    "data_type": "numeric",
+                    "required": true,
+                    "primary": false,
+                    "contains": [],
+                    "value_list": [],
+                    "default": "",
+                    "order": 5,
+                    "name": "n",
+                    "id": 6,
+                    "param_name": "n"
+                }
+            },
+            "output": [
+                {
+                    "data_path": "action_result.parameter.mesage",
+                    "data_type": "string",
+                    "contains": [],
+                    "column_name": "mesage",
+                    "column_order": 0
+                },
+                {
+                    "data_path": "action_result.parameter.model",
+                    "data_type": "string",
+                    "contains": [],
+                    "column_name": "model",
+                    "column_order": 1
+                },
+                {
+                    "data_path": "action_result.parameter.max_tokens",
+                    "data_type": "numeric",
+                    "contains": [],
+                    "column_name": "max_tokens",
+                    "column_order": 2
+                },
+                {
+                    "data_path": "action_result.parameter.temperature",
+                    "data_type": "string",
+                    "contains": [],
+                    "column_name": "temperature",
+                    "column_order": 3
+                },
+                {
+                    "data_path": "action_result.parameter.top_p",
+                    "data_type": "string",
+                    "contains": [],
+                    "column_name": "top_p",
+                    "column_order": 4
+                },
+                {
+                    "data_path": "action_result.parameter.n",
+                    "data_type": "numeric",
+                    "contains": [],
+                    "column_name": "n",
+                    "column_order": 5
+                },
+                {
+                    "data_path": "action_result.status",
+                    "data_type": "string",
+                    "column_name": "status",
+                    "column_order": 6
+                },
+                {
+                    "data_path": "action_result.message",
+                    "data_type": "string"
+                },
+                {
+                    "data_path": "summary.total_objects",
+                    "data_type": "numeric"
+                },
+                {
+                    "data_path": "summary.total_objects_successful",
+                    "data_type": "numeric"
+                }
+            ],
+            "render": {
+                "type": "table"
+            },
+            "versions": "EQ(*)"
+        }
+    ],
+    "custom_made": true,
+    "copied_from_id": 358,
+    "copied_from_version": "1.6.0",
+    "directory": "openai_9a9467b3-c4da-4289-a07b-b2d6b54f65da",
+    "version": 1,
+    "appname": "-",
+    "executable": "spawn3",
+    "disabled": false
+}
